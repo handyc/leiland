@@ -1,0 +1,159 @@
+{% load static %}
+<html> <head>
+<title>{% block title %}Leiland{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'webapp/css/app.css' %}">
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap.min.css' %}">
+<meta property="og:description" content="Leiland" />
+</head>
+<body>
+
+{% block content %}
+
+    <div class="container home-container" style="width: 960px;">
+    
+        <img src="{% static 'webapp/images/leiden_university_logo_black.png' %}" />
+        <h1 class="title">Leiden Language Data</h1>
+        <p> Welcome to the Leiden Language Database (LeiLanD).</p>
+
+        <p> This is a searchable catalogue containing basic metadata information about linguistic data collected by researchers at Leiden University. Some of the datasets are openly available online. For those that have restricted access it is possible to contact the dataset creators for access. </p>
+        <p> The metadata in this catalogue are also available in <a href="https://www.clarin.eu/content/component-metadata">CMDI</a> (Component MetaData Infrastructure) through the <a href="https://applejack.science.ru.nl/collbank">Radboud University Collection bank</a>. Each dataset has a link with a persistent identifier. </p>
+        <p> We hope the catalogue will be a useful tool for researchers and students who want to explore and work on linguistic data, and it will encourage the use and re-use of data in line with <a href="https://www.nwo.nl/en/open-science">Open Science</a> and <a href="https://www.go-fair.org/fair-principles/">FAIR principles of data management</a>.</p>
+        <p> If you want to add your dataset to the catalogue, or if you have any questions, please contact us at <a href="mailto:leiland@hum.leidenuniv.nl">leiland@hum.leidenuniv.nl</a></p>
+        <p class="button-container">
+            <a class="btn btn-light" href="{% url 'search' %}">SEARCH DATASETS</a>
+            <a class="btn btn-light ml-4" href="{% url 'about' %}">READ ABOUT LEILAND</a>
+        </p>
+    </div>
+
+    <canvas id="background"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static 'webapp/js/simplex-noise.min.js' %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        App({ el: 'background' });
+
+        function App(conf) {
+            conf = {
+                fov: 60,
+                cameraZ: 180,
+                xyCoef: 25,
+                zCoef: 10,
+                lightIntensity: 0.9,
+                light1Color: 0x001158,
+                light2Color: 0x001158,
+                light3Color: 0x3066BE,
+                light4Color: 0x3066BE,
+                ...conf
+            };
+
+            let renderer, scene, camera;
+            let width, height, cx, cy, wWidth, wHeight;
+
+            let plane;
+            const simplex = new SimplexNoise();
+
+            init();
+
+            function init() {
+                renderer = new THREE.WebGLRenderer({ canvas: document.getElementById(conf.el), antialias: true, alpha: true });
+                camera = new THREE.PerspectiveCamera(conf.fov);
+                camera.position.z = conf.cameraZ;
+
+                updateSize();
+                window.addEventListener('resize', updateSize, false);
+
+                initScene();
+                animate();
+            }
+
+            function initScene() {
+                scene = new THREE.Scene();
+                initLights();
+
+                let mat = new THREE.MeshLambertMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+                let geo = new THREE.PlaneBufferGeometry(wWidth, wHeight, wWidth / 2, wHeight / 2);
+                plane = new THREE.Mesh(geo, mat);
+                scene.add(plane);
+
+                plane.rotation.x = -Math.PI / 2 - 0.2;
+                plane.position.y = -25;
+                camera.position.z = 60;
+            }
+
+            function initLights() {
+                const r = 30;
+                const y = 10;
+                const lightDistance = 500;
+
+                light1 = new THREE.PointLight(conf.light1Color, conf.lightIntensity, lightDistance);
+                light1.position.set(0, y, r);
+                scene.add(light1);
+                light2 = new THREE.PointLight(conf.light2Color, conf.lightIntensity, lightDistance);
+                light2.position.set(0, -y, -r);
+                scene.add(light2);
+                light3 = new THREE.PointLight(conf.light3Color, conf.lightIntensity, lightDistance);
+                light3.position.set(r, y, 0);
+                scene.add(light3);
+                light4 = new THREE.PointLight(conf.light4Color, conf.lightIntensity, lightDistance);
+                light4.position.set(-r, y, 0);
+                scene.add(light4);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                animatePlane();
+                animateLights();
+
+                renderer.render(scene, camera);
+            }
+
+            function animatePlane() {
+                gArray = plane.geometry.attributes.position.array;
+                const time = Date.now() * 0.0002;
+                for (let i = 0; i < gArray.length; i += 3) {
+                    gArray[i + 2] = simplex.noise4D(gArray[i] / conf.xyCoef, gArray[i + 1] / conf.xyCoef, time, 0) * conf.zCoef;
+                }
+                plane.geometry.attributes.position.needsUpdate = true;
+            }
+
+            function animateLights() {
+                const time = Date.now() * 0.001;
+                const d = 50;
+                light1.position.x = Math.sin(time * 0.1) * d;
+                light1.position.z = Math.cos(time * 0.2) * d;
+                light2.position.x = Math.cos(time * 0.3) * d;
+                light2.position.z = Math.sin(time * 0.4) * d;
+                light3.position.x = Math.sin(time * 0.5) * d;
+                light3.position.z = Math.sin(time * 0.6) * d;
+                light4.position.x = Math.sin(time * 0.7) * d;
+                light4.position.z = Math.cos(time * 0.8) * d;
+            }
+
+            function updateSize() {
+                width = window.innerWidth; cx = width / 2;
+                height = window.innerHeight; cy = height / 2;
+                if (renderer && camera) {
+                    renderer.setSize(width, height);
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                    const wsize = getRendererSize();
+                    wWidth = wsize[0];
+                    wHeight = wsize[1];
+                }
+            }
+
+            function getRendererSize() {
+                const cam = new THREE.PerspectiveCamera(camera.fov, camera.aspect);
+                const vFOV = cam.fov * Math.PI / 180;
+                const height = 2 * Math.tan(vFOV / 2) * Math.abs(conf.cameraZ);
+                const width = height * cam.aspect;
+                return [width, height];
+            }
+        }
+    </script>
+
+{% endblock %}
+
+</body>
+</html>

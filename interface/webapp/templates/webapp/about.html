@@ -1,0 +1,28 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <nav th:replace="fragments/fragment :: navbar"></nav>
+  <div class="container about-container" style="width: 960px; text-align: justify;">
+    <h1 class="title">About LeiLanD</h1>
+    <p>LeiLanD was developed thanks to the support of the <a href="https://www.library.universiteitleiden.nl/about-us/centre-for-digital-scholarship">Center for Digital Scholarship</a> (Kristina Hettne, Peter Verhaar),
+      <a href="https://www.clariah.nl/">CLARIAH</a> (Sjef Barbiers, Gijsbert Rutten), <a href="https://www.universiteitleiden.nl/en/humanities/leiden-university-centre-for-linguistics">Leiden University Centre of Linguistics - LUCL</a> (Rob Goedemans, information manager for the Faculty of Humanities) and
+      <a href="https://www.universiteitleiden.nl/en/humanities/centre-for-digital-humanities">Leiden University Centre of Digital Humanities</a> (Sjef Barbiers, Jelena Prokic).</p>
+      <p>The project was made possible by a grant from LUCL awarded to Felix Ameka, Nivja de Jong and M. Carmen Parafita Couto and it was coordinated by Sara Petrollino. Since 2017 many student assistants at Leiden University have  contributed to different stages of its development:</p>
+      <ul>
+        <li>The creation of the first overview of all existing datasets at LUCL by means of interviews with LUCL researchers (Suze Geuke, Oscar Billing, Ali Mohammadi, Gisella Soler Bertolin, Marta Królikowska, Monica Preller).</li>
+        <li>The creation of a structured database with controlled vocabularies and defined fields (Suze Geuke, Oscar Billing).</li>
+        <li>The digitization of analogue material and the archival of researchers’ datasets in Dataverse (Suze Geuke, Gilles Scheifer, Claudia Berruti, Ali Mohammadi, Ginger Haasbroek, Arende de Wit, Clemens Mayer).</li>
+        <li>The data harmonization and mapping with CMDI, in collaboration with Henk van Heuvel and Eric Sanders from Radboud University (Gilles Scheifer).</li>
+        <li>The creation of the LeiLanD web-interface (<a href="https://www.linkedin.com/in/thijs-nulle-3190171a3/">Thijs Nulle</a>).</li>
+      </ul>
+      <p>The codebase for LeiLanD is available on <a href="https://github.com/handyc">GitHub</a>.</p>
+
+<p class="c11 c31"><span class="c8"><a href="{% url 'cmdi' %}">Click here</a> for a description of the categories used in LeiLanD and their corresponding </span>
+  <span class="c8">categories</span><span class="c8 c32">&nbsp;in the CMDI profile. </span></p>
+  </div>
+
+
+
+{% endblock %}

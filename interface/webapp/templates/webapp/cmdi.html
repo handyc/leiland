@@ -1,0 +1,91 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <nav th:replace="fragments/fragment :: navbar"></nav>
+  <div class="container about-container" style="width: 960px; text-align: justify;">
+
+<p>This is a description of the categories used in LeiLanD and their corresponding categories in the CMDI profile.</p>
+<table style="color:#ffffff"><tr class="c87"><td class="c87" colspan="1" rowspan="1"><p class="c87"><span class="c87">Field in LeiLand</span></p></td>
+<td>Description</p></td><td class="c7" colspan="1" rowspan="1">
+<p class="c89"><span class="c8">Corresponding CMDI category</span></p></td></tr><tr class="c85"><td class="c1" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">Annotation type</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c8"><span class="c5">type of annotations, understood as </span>
+<span class="c8 c17">any enrichment of the data, e.g. specification of linguistic phenomenon, transcriptions, translations, glossing, POStagging, etc)</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">annotation:type</span></p></td></tr>
+<tr class="c82"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Author</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">the creator of the dataset</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">ResourceCreator</span></p></td></tr><tr class="c15">
+<td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Availability</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">refers to whether the dataset is openly accessible or not</span></p>
+<p class="c0"><span class="c5 c6">Open:</span><span class="c5">&nbsp;It can be accessed and re-used.
+<br>If there is no link directly to the dataset, it has most likely not been published yet. This means that the author of the dataset is willing to share the dataset. Get in touch with the LeiLanD team to enquire about the accessibility of the dataset. &nbsp;<br><br></span><span class="c5 c6">Restricted:</span><span class="c8">&nbsp;Some kind of conditions have to be met before accessing the dataset, or only some parts of the dataset can be accessed. Get in touch with the LeiLanD team to enquire about the accessibility of the dataset.</span></p>
+<p class="c0"><span class="c8">&nbsp;</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">access:availability</span></p></td></tr>
+<tr class="c82"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Contact Person</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">the contact person for the dataset</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">access:ContactPerson</span></p></td></tr><tr class="c14">
+<td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Corpus type</span></p></td><td class="c8" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">refers to the linguality of the dataset, for example whether the dataset is monolingual, bilingual, or multilingual.</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">lingualityType</span></p></td></tr>
+<tr class="c9"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Data format</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">the format in which the data is provided</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">Media</span></p></td></tr>
+<tr class="c84"><td class="c1" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">Data type</span></p></td><td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">the kind of data in the dataset. </span></p>
+<p class="c0"><span class="c5 c6">Audio:</span><span class="c8">&nbsp;the data is in audio format </span></p>
+<p class="c0"><span class="c5 c6">Audiovisual:</span><span class="c8">&nbsp;the data contains videos</span></p>
+<p class="c0"><span class="c5 c6">Photo</span><span class="c8">: the data contains images</span></p><p class="c0"><span class="c5 c6">Written</span>
+<span class="c8">: the data contains text</span></p></td><td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">DCType</span></p></td></tr>
+<tr class="c13"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Domain</span></p></td><td class="c8" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">provides information about the domain of research and disciplines associated with the dataset.</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">Domain</span></p></td></tr>
+<tr class="c9"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Gender</span></p></td><td class="c8" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">refers to the gender of the participants in the dataset</span></p></td><td class="c7" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">None</span></p></td></tr><tr class="c9"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Language</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">the language(s) that make up the dataset</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">Language</span></p></td></tr>
+<tr class="c88"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Proficiency of the speakers</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c5">refers to the order of acquisition of a language. <br></span>
+<span class="c5 c6">L1:</span><span class="c8">&nbsp;first language</span></p><p class="c0">
+<span class="c5 c6">L2:</span><span class="c8">&nbsp;second language</span></p><p class="c0"><span class="c5 c6">L3:</span>
+<span class="c8">&nbsp;third language</span></p><p class="c0"><span class="c5 c6">Other:</span>
+<span class="c8">&nbsp;used for cases such as Artificial languages</span></p></td><td class="c7" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">lingualityNativeness</span></p></td></tr><tr class="c82"><td class="c1" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">Location</span></p></td><td class="c8" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">place where the data was collected</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">geographicalProvenance</span></p></td></tr>
+<tr class="c9"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Metadata</span></p></td><td class="c8" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">whether the dataset comes with additional metadata</span></p></td><td class="c7" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">None</span></p></td></tr><tr class="c12"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Modality</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">modality of the data. </span></p><p class="c0"><span class="c5 c6">Signed:</span>
+<span class="c8">&nbsp;the data is made up of signed language</span></p><p class="c0"><span class="c5 c6">Written:</span>
+<span class="c8">&nbsp;the data is made up of written text</span></p>
+<p class="c0"><span class="c5 c6">Spoken:</span><span class="c8">&nbsp;the data is made up of spoken utterances.</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">Modality</span></p></td></tr><tr class="c13">
+<td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Persistent Identifier</span></p></td><td class="c8" colspan="1" rowspan="1">
+<p class="c0"><span class="c5">the persistent identifier in the CMDI profile of the RU Collection Bank</span><span class="c86">: </span>
+<span class="c6 c18"><a class="c87" href="https://www.google.com/url?q=https://applejack.science.ru.nl/collbank&amp;sa=D&amp;source=editors&amp;ust=1680616506530697&amp;usg=AOvVaw097gn1qA-IBFGBjFDZXWJU">https://applejack.science.ru.nl/collbank</a></span>
+<span class="c8">&nbsp;</span></p></td><td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">None</span></p></td></tr><tr class="c13">
+<td class="c1" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">Publisher</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">this field provides the url of the archive, server and/ or website hosting the dataset</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">access:website</span></p></td></tr>
+<tr class="c9"><td class="c1" colspan="1" rowspan="1"><p class="c0"><span class="c8">Software</span></p></td>
+<td class="c8" colspan="1" rowspan="1"><p class="c0"><span class="c8">whether software was used or developed to work with the dataset</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0"><span class="c8">None</span></p></td></tr>
+<tr class="c9"><td class="c1" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">Years</span></p></td><td class="c8" colspan="1" rowspan="1">
+<p class="c0"><span class="c8">years during which the data collection took place</span></p></td>
+<td class="c7" colspan="1" rowspan="1"><p class="c0">
+<span class="c8">temporalProvenance</span></p></td></tr></table>
+<p class="c16"><span class="c8">&nbsp;</span></p>
+<p class="c8 c81"><span class="c8"></span></p>
+
+  </div>
+
+
+
+{% endblock %}

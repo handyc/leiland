@@ -1,0 +1,33 @@
+{% load static %}
+<html> <head>
+<title>{% block title %}Leiland{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'webapp/css/app.css' %}">
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap.min.css' %}">
+<meta property="og:description" content="Leiland" />
+</head>
+<body>
+
+    <nav fragment="navbar" class="navbar navbar-expand py-2">
+        <div class="container">
+            <a class="navbar-brand" href="/">Leiden Language Data</a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}" classappend="${#httpServletRequest.requestURI} == '/' ? 'active' : ''">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}" classappend="${#httpServletRequest.requestURI} == '/about' ? 'active' : ''">About</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary px-3" style="border-radius: 40px;" href="{% url 'search' %}"
+                       classappend="${#httpServletRequest.requestURI} == '/search' ? 'active' : ''">Search</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% block content %}{% endblock %}
+</body>
+</html>
+
+

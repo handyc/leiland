@@ -1,0 +1,29 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container results-container container-small">
+leiland test
+</div>
+
+{% for dataset in datasets %}
+<p>{{ dataset.title }}
+<p>{{ dataset.description }}
+<p>{{ dataset.contact }}
+<p>{{ dataset.author }}
+<p>{{ dataset.annotation_types }}
+<p>{{ dataset.domains }}
+<p>{{ dataset.location }}
+<p>{{ dataset.data_formats }}
+<p>{{ dataset.languages }}
+<p>{{ dataset.corpus_types }}
+<p>{{ dataset.data_types }}
+<p>{{ dataset.genders }}
+<p>{{ dataset.language_proficiencies }}
+<p>{{ dataset.modalities }}
+<p>{{ dataset.availability }}
+
+{% endfor %}
+
+{% endblock %}

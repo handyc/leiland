@@ -1,0 +1,164 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap-select.css' %}">
+<script src="{% static 'webapp/js/jquery.min.js' %}"></script>
+<script src="{% static 'webapp/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'webapp/js/bootstrap-select.min.js' %}"></script>
+
+    <nav replace="fragments/fragment :: navbar"></nav>
+    
+    <div class="container form-container">
+
+
+                <h1 class="mt-5">Search Datasets</h1>
+        <form class="search-form my-3" object="${dto}" method="post" action="{% url 'results' %}">{% csrf_token %}
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 form-group languageGroup">
+                    <label for="language" class="form-label">Language</label>
+                    <select class="selectpicker" name="language" id="language" field="language" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for language in languages %}
+                        <option name="{{ language.id }}" id="{{ language.id }}" value="{{ language.id }}">{{ language }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <div class="col-md-6 col-sm-12 form-group modalityGroup">
+                    <label for="modality" class="form-label">Modality</label>
+                    <select class="selectpicker" name="modality" id="modality" field="modality" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for modality in modalities %}
+                        <option name="{{ modality.id }}" id="{{ modality.id }}" value="{{ modality.id }}">{{ modality }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group annotationTypeGroup">
+                    <label for="annotation_type" class="form-label">Annotation Type</label>
+                    <select class="selectpicker" name="annotation_type" id="annotation_type" field="annotation_type" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for annotation_type in annotation_types %}
+                        <option name="{{ annotation_type.id }}" id="{{ annotation_type.id }}" value="{{ annotation_type.id }}">{{ annotation_type }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group dataTypeGroup">
+                    <label for="dataType" class="form-label">Type of data</label>
+
+                    <select class="selectpicker" name="data_type" id="data_type" field="data_type" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for data_type in data_types %}
+                        <option name="{{ data_type.id }}" id="{{ data_type.id }}" value="{{ data_type.id }}">{{ data_type }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group dataFormatGroup">
+                    <label for="dataFormat" class="form-label">Format of the dataset</label>
+                    <select class="selectpicker" name="data_format" id="data_format" field="data_format" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for data_format in data_formats %}
+                        <option name="{{ data_format.id }}" id="{{ data_format.id }}" value="{{ data_format.id }}">{{ data_format }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group corpusTypeGroup">
+                    <label for="corpusType" class="form-label">Corpus Type</label>
+                    <select class="selectpicker" name="corpus_type" id="corpus_type" field="corpus_type" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for corpus_type in corpus_types %}
+                        <option name="{{ corpus_type.id }}" id="{{ corpus_type.id }}" value="{{ corpus_type.id }}">{{ corpus_type }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group languageProficiencyGroup">
+                    <label for="languageProficiency" class="form-label">Proficiency of the speakers</label>
+                    <select class="selectpicker" name="language_proficiency" id="language_proficiency" field="language_proficiency" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for language_proficiency in language_proficiencies %}
+                        <option name="{{ language_proficiency.id }}" id="{{ language_proficiency.id }}" value="{{ language_proficiency.id }}">{{ language_proficiency }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group genderGroup">
+                    <label for="gender" class="form-label">Gender of the speakers</label>
+                    <select class="selectpicker" name="gender" id="gender" field="gender" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for gender in genders %}
+                        <option name="{{ gender.id }}" id="{{ gender.id }}" value="{{ gender.id }}">{{ gender }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group locationGroup">
+                    <label for="location" class="form-label">Location</label>
+
+                    <select class="selectpicker" name="location" id="location" field="location" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for location in locations %}
+                        <option name="{{ location.id }}" id="{{ location.id }}" value="{{ location.id }}">{{ location }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group authorGroup">
+                    <label for="author" class="form-label">Author</label>
+                    <select class="selectpicker" name="author" id="author" field="author" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for author in authors %}
+                        <option name="{{ author.id }}" id="{{ author.id }}" value="{{ author.id }}">{{ author }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12 form-group domainGroup">
+                    <label for="domain" class="form-label">Domain</label>
+
+                    <select class="selectpicker" name="domain" id="domain" field="domain" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for domain in domains %}
+                        <option name="{{ domain.id }}" id="{{ domain.id }}" value="{{ domain.id }}">{{ domain }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-sm-12 form-group domainGroup">
+                    <label for="accessfield" class="form-label">Access and availability</label>
+
+                    <select class="selectpicker" name="accessfield" id="accessfield" field="accessfield" data-live-search="true" multiple data-actions-box="true" data-size="10" data-done-button="true" data-done-button-text="OK">
+                        {% for accessfield in access %}
+                        <option name="{{ accessfield.id }}" id="{{ accessfield.id }}" value="{{ accessfield.id }}">{{ accessfield }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary mt-2" id="submit">Search</button>
+        </form>
+        <small>Note: Multiple options can be selected.</small>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.selectpicker').selectpicker().selectpicker('refresh');
+        });
+
+        document.getElementById("submit").addEventListener("click", () => {
+            const datalists = document.getElementsByTagName("datalist");
+            for (const datalist of datalists) {
+                const input = datalist.parentNode.getElementsByTagName('input')[0];
+                if (input.value) {
+                    const option = document.querySelector(`#${datalist.id} option[value='${input.value}']`);
+                    input.value = option.getAttribute('data-value');
+                }
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-pzjw8f+ua7Kw1TIq0Xcxr8ypse7j0ymiJU10V7UzX37Id5kt7eoBIdgDlV7zysDvfQPBKP7C2DkIgjKJyIUzXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-8t7v3t3r3xT/0rNj9nGkasxmXGKQgRvoNz+xWQ8fHHD1xhDGT7jAe9RC/ndlOSpHxfmEKCiLbIZuCm6DNOU6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap-select.css' %}">
+<script src="{% static 'webapp/js/jquery.min.js' %}"></script>
+<script src="{% static 'webapp/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'webapp/js/bootstrap-select.min.js' %}"></script>
+
+    <nav replace="fragments/fragment :: navbar"></nav>
+
+{% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+
+<div class="container form-container">
+
+  {% if author_choices %}
+  {{ author_choices }}
+  {% endif %}
+  
+
+  <form action="{% url 'testresults' %}" method="post">
+    {% csrf_token %}
+    
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+{% endblock %}

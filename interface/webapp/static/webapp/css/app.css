@@ -1,0 +1,243 @@
+* {
+  font-family: 'Helvetica Neue', sans-serif; }
+
+body {
+  background: #161616 !important; }
+
+small {
+  color: #bbb; }
+
+a:hover, a.navbar-brand:hover {
+  color: #000; }
+
+hr {
+  background-color: #161616; }
+
+.btn-primary {
+  background: -webkit-linear-gradient(45deg, #BE4CB9 0%, #4CB7FF 100%) !important;
+  background: -moz-linear-gradient(45deg, #BE4CB9 0%, #4CB7FF 100%) !important;
+  background: linear-gradient(45deg, #BE4CB9 0%, #4CB7FF 100%) !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 1.5em; }
+  .btn-primary:hover {
+    background: -webkit-linear-gradient(45deg, #9c3998 0%, #0a9cff 100%) !important;
+    background: -moz-linear-gradient(45deg, #9c3998 0%, #0a9cff 100%) !important;
+    background: linear-gradient(45deg, #9c3998 0%, #0a9cff 100%) !important; }
+
+.home-container {
+  color: #fff !important;
+  text-align: justify;
+  font-size: 1.125em; }
+  .home-container a {
+    color: #fff;
+    text-decoration: underline; }
+    .home-container a:hover {
+      color: #bbb; }
+  .home-container h1 {
+    text-align: center;
+    position: relative;
+    font-size: 3.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 1.5em; }
+  .home-container .button-container {
+    text-align: center; }
+    .home-container .button-container a.btn {
+      color: #000;
+      text-decoration: none;
+      margin: 1em 0;
+      padding: 1em;
+      border-radius: 2em;
+      letter-spacing: 2px; }
+  .home-container img {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 1em;
+    width: 200px; }
+
+.about-container {
+  color: #fff !important;
+  text-align: justify;
+  font-size: 1.125em; }
+  .about-container h1 {
+    position: relative;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 2em 0; }
+  .about-container a {
+    color: #fff;
+    text-decoration: underline; }
+    .about-container a:hover {
+      color: #bbb !important; }
+
+#background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1; }
+
+nav {
+  background: #fefefe; }
+  nav .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 48px; }
+    nav .navbar-brand::before {
+      content: '';
+      background-image: url("../images/logo_lucl.png");
+      background-size: 48px 48px;
+      display: inline-block;
+      float: left;
+      width: 48px;
+      height: 48px;
+      margin-right: 16px; }
+  nav a {
+    color: #111; }
+
+.form-group label {
+  color: #fff; }
+
+.form-group.required label::after {
+  content: '*';
+  color: #BE4CB9; }
+
+.container-small {
+  max-width: 768px; }
+
+.result {
+  margin: 1rem !important;
+  padding: 0.5rem !important;
+  border-radius: 0.5rem;
+  background: #333; }
+
+.login-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #eee;
+  border-radius: 1em;
+  -webkit-box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.5); }
+  .login-container input {
+    position: relative;
+    background: transparent;
+    border: none;
+    padding-left: 40px;
+    border-radius: 0;
+    border-bottom: 2px solid #CCC; }
+    .login-container input:focus {
+      background: transparent;
+      outline: none 0 !important;
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none; }
+      .login-container input:focus + span {
+        width: 100%; }
+  .login-container span {
+    position: absolute;
+    left: 0;
+    top: 36px;
+    height: 2px;
+    width: 0;
+    background: linear-gradient(90deg, #a3009b 0%, #0099ff 100%);
+    transition-duration: .5s; }
+  .login-container .glyphicon {
+    position: absolute;
+    left: 0;
+    height: 38px;
+    width: 38px;
+    line-height: 38px;
+    pointer-events: none; }
+
+.footer li a:visited {
+  color: #555 !important; }
+
+.footer li a:hover {
+  color: #111 !important;
+  text-decoration: none; }
+
+.form-container {
+  color: #fff !important; }
+  .form-container input {
+    background-color: #161616;
+    border-color: #121212;
+    color: #fff; }
+    .form-container input:focus {
+      background-color: #161616;
+      border-color: #161616;
+      color: #fff; }
+  .form-container .dropdown {
+    display: block !important;
+    width: 100% !important; }
+  .form-container .dropdown-menu {
+    background-color: #454545; }
+    .form-container .dropdown-menu input {
+      background-color: #161616;
+      color: #fff; }
+    .form-container .dropdown-menu .btn {
+      margin: 0 1em; }
+    .form-container .dropdown-menu .dropdown-item {
+      color: #bbb; }
+      .form-container .dropdown-menu .dropdown-item:hover {
+        background-color: #8b8a8a;
+        color: #fff; }
+      .form-container .dropdown-menu .dropdown-item span.text {
+        text-transform: capitalize; }
+    .form-container .dropdown-menu .no-results {
+      background-color: #454545;
+      color: #fff; }
+    .form-container .dropdown-menu .actions-btn {
+      background-color: #3e3e3e;
+      border-color: #3e3e3e;
+      color: #fff; }
+      .form-container .dropdown-menu .actions-btn:hover {
+        background-color: #373737; }
+    .form-container .dropdown-menu .bs-donebutton button {
+      background-color: #8b8a8a;
+      border-color: #8b8a8a;
+      color: #fff;
+      width: 50%; }
+
+.container {
+  color: #fff; }
+
+.results-container td, .results-container th {
+  padding: .25em 1em; }
+  .results-container td a, .results-container th a {
+    color: #fff; }
+
+.results-container .row {
+  padding: 1em 1em 1em 2em;
+  border-radius: 1em;
+  background-color: #454545;
+  margin-top: 1em; }
+
+.dataset-container p {
+  color: #bbb;
+  margin: 0; }
+  .dataset-container p.main {
+    color: #fff; }
+
+.dataset-container a {
+  color: #fff; }
+  .dataset-container a:hover {
+    color: #bbb; }
+
+.icon {
+  padding: .25em;
+  margin-left: .5em;
+  font-size: .75em; }
+
+.icon-large {
+  padding: .5em;
+  margin-left: .5em;
+  font-size: 1.25em;
+  color: #fff; }

@@ -1,0 +1,194 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <nav replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <h1 class="mt-5 mb-3">{{ dataset.title }}</h1>
+            
+<p class="my-0"><i>{{ dataset.description }}</i></p>
+
+{%  ifnotequal dataset.comments '' %}
+<p class="mb-4">Comments: {{ dataset.comments }}</p>
+{%  endifnotequal %}
+
+<div class="dataset-container">
+
+        <div class="row">
+            <div class="col-4"><p class="main"><b>Languages:</b></p></div>
+                <div class="col-8"><p>
+                {% for thing in languages %}
+                {{ thing }}
+                {% if not forloop.last %},{% endif %}
+                {% endfor %}
+                 | 
+                 {% for thing in glottos %}
+                 <a href="https://glottolog.org/resource/languoid/id/{{ thing }}"/>{{ thing }}</a>
+                 {% if not forloop.last %},{% endif %}
+                 {% endfor %}
+                | 
+                {% for thing in isos %}
+                <a href="https://iso639-3.sil.org/code/{{ thing }}"/>{{ thing }}</a>
+                {% if not forloop.last %},{% endif %}
+                {% endfor %}
+                </div>
+        
+        </div>
+
+        <div class="row">
+            <div class="col-4"><p class="main"><b>Author:</b></p></div>
+            <div class="col-8"><p>{{ dataset.author }}</p></div>
+        </div>
+
+        <div class="row"> 
+            {%  ifnotequal dataset.contact '' %}
+                <div class="col-4"><p class="main"><b>Contact Person:</b></p></div>
+                <div class="col-8"><p>{{ dataset.contact }}</p></div>
+            {%  endifnotequal %}
+        </div>
+        
+        <div class="row"> 
+            {%  ifnotequal dataset.rightsholder '' %}
+                <div class="col-4"><p class="main"><b>Rights Holder:</b></p></div>
+                <div class="col-8"><p>{{ dataset.rightsholder }}</p></div>
+            {%  endifnotequal %}
+        </div>
+
+        <div class="row">
+            {%  ifnotequal dataset.years '' %}
+                <div class="col-4"><p class="main"><b>Years:</b></p></div>
+                <div class="col-8"><p>{{ dataset.years }}</p></div>
+            {%  endifnotequal %}
+        </div>
+
+        <div class="row">
+            <div class="col-4"><p class="main"><b>Location:</b></p></div>
+            <div class="col-8"><p>{%  ifnotequal dataset.sublocation '' %}{{ dataset.sublocation }}, {%  endifnotequal %}{{ dataset.location }}</p></div>
+        </div>
+
+            <div class="row">
+                {%  ifnotequal dataset.metadata '' %}
+                    <div class="col-4"><p class="main"><b>Metadata:</b></p></div>
+                    <div class="col-8"><p>{{ dataset.metadata }}</p></div>
+                {%  endifnotequal %}
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Type of data:</b></p></div>
+                <div class="col-8"><p>{{ dataset.data_types }}</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Modality:</b></p></div>
+                <div class="col-8"><p>{{ dataset.modalities }}</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Linguality type:</b></p></div>
+                <div class="col-8"><p>{{ dataset.corpus_types }}</p></div>
+            </div>
+                {%  ifnotequal dataset.corpus_note '' %}
+                <div class="col-12"><small>*{{ dataset.corpus_note }}</small></div>
+                {%  endifnotequal %}
+
+            <div class="row">
+                {%  ifnotequal dataset.annotation_types '' %}
+                <div class="col-4"><p class="main"><b>Annotation type:</b></p></div>
+                <div class="col-8"><p>{{ dataset.annotation_types }}</p></div>
+                {%  endifnotequal %}
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Format of the dataset:</b></p></div>
+                <div class="col-8"><p>{{ dataset.data_formats }}</p></div>
+                <div class="col-12"><small>{% ifnotequal dataset.data_size '' %}* {{ dataset.data_size }}{%  endifnotequal %}</small></div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Number of speakers:</b></p></div>
+                <div class="col-8"><p>{{ dataset.demographics }}</p></div>
+            </div>
+
+            {% ifnotequal dataset.collection_method '' %}
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Methods of data collection:</b></p></div>
+                <div class="col-8"><p>{{ dataset.collection_method }}</p></div>
+            </div>
+            {%  endifnotequal %}
+            
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Gender of the speakers:</b></p></div>
+                <div class="col-8"><p>{{ dataset.genders }}</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Age of the speakers:</b></p></div>
+                <div class="col-8"><p>{{ dataset.agegroup }}</p></div>
+            </div>
+
+            <div class="row">
+                {%  ifnotequal dataset.language_proficiencies '' %}
+                <div class="col-4"><p class="main"><b>Language proficiencies:</b></p></div>
+                <div class="col-8"><p>{{ dataset.language_proficiencies }}</p></div>
+                {%  endifnotequal %}
+            </div>
+
+            <hr/>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Domains:</b></p></div>
+                <div class="col-8"><p>{{ dataset.domains }}</p></div>
+            </div>
+            
+            <div class="row">
+                {%  ifnotequal dataset.software '' %}
+                    <div class="col-4 col-2"><p class="main"><b>Software:</b></p></div>
+                    <div class="col-8 col-4"><p>{{ dataset.software }}</p></div>
+                {%  endifnotequal %}
+            </div>
+
+            <hr/>
+
+            <div class="row">
+                {%  ifnotequal dataset.banklink '' %}
+<br>                <div class="col-4"><p class="main"><b> Collection Bank:</b></p></div>
+                    <div class="col-8"><a href="{{ dataset.banklink }}" target="_blank">{{ dataset.banklink }}</a></div>
+                {%  endifnotequal %}
+            </div>
+
+            <div class="row">
+                <div class="col-4"><p class="main"><b>Availability:</b></p></div>
+                <div class="col-8"><p class="m-0">{{ dataset.availability }}</p></div>
+
+                {%  ifnotequal dataset.access_note '' %}
+                <div class="col-12"><small>*{{ dataset.access_note }}</small></div>
+                {%  endifnotequal %}
+            </div>
+
+            <div class="row">
+                {%  ifnotequal dataset.publisher '' %}
+                    <div class="col-4 col-2"><p class="main"><b>Publisher:</b></p></div>
+                    <div class="col-8 col-4"><p><a href="{{ dataset.publisher }}">{{ dataset.publisher }}</a></p></div>
+                {% else %}
+                {% ifequal dataset.availability 'Open' %}
+                <div class="col-8 col-2">Please contact us at leiland@hum.leidenuniv.nl for more information about this dataset.</div>
+                {% endifequal %}
+
+                {%  endifnotequal %}
+
+               
+
+            </div>
+
+            <hr/>
+            
+        </div>
+        
+     <a class="btn btn-primary" onclick="history.go(-1);" style="margin-bottom: 1em;">Back</a>
+    </div>
+        
+
+{% endblock %}

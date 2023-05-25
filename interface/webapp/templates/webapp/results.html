@@ -1,0 +1,66 @@
+{% extends "webapp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{{ error_message }}
+
+    <nav replace="fragments/fragment :: navbar"></nav>
+    <div class="container results-container container-small" th:if="${!datasets.isEmpty()}">
+        <h1 class="mt-5 mb-3"> Results </h1>
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+                <tr>
+                    <th style="color:#ffffff">Title</th>
+                    <th style="color:#ffffff">Author</th>
+                </tr>
+            </thead>
+            <tbody>
+
+{% for item in post %}
+{{ item }}
+{% endfor %}
+            
+{% for dataset in datasets %}
+
+<tr each="dataset : ${datasets}">
+                    <td>
+<a href="{% url 'dataset' dataset.id %}">{{ dataset.title }}</a>
+                    </td>
+                    <td>
+                        <span class="float-left" text="{{ dataset.author }}"><a href="{% url 'dataset' dataset.id %}">{{ dataset.author }}</a></span>
+
+                    </td>
+                </tr>
+ 
+{% endfor %}
+            </tbody>   
+                    
+
+                    <td>
+                    
+                    
+                        <span class="float-left" text="${dataset.author}"></span>
+                        <block sec:authorize="isAuthenticated()">
+                            <a href="@{/dataset/{id}/delete(id = ${dataset.id})}" class="float-right icon delete-icon"><i class="fas fa-trash"></i></a>
+                            <a href="@{/dataset/{id}/edit(id = ${dataset.id})}" class="float-right icon"><i class="fas fa-pen"></i></a>
+                        </block>
+                    </td>
+                    
+                    
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary" onclick="history.go(-1);" style="margin-bottom: 1em;">Back</a>
+    </div>
+
+
+
+{% if dinosaur %}
+    <div class="container results-container container-small" if="${datasets.isEmpty()}">
+        <h4 class="my-3"> No datasets have been found with your query.</h4>
+        <a class="btn btn-primary" onclick="history.go(-1);" style="margin-bottom: 1em;">Back</a>
+    </div>
+{% endif %}
+
+{% endblock %}
